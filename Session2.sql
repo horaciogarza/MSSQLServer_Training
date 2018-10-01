@@ -1,6 +1,15 @@
---Sesion 2
+--Sesion 
 
 	--INNER JOIN
+	--C1364425
+
+
+	--Ejemplo de Join
+
+	SELECT T1.*, T2.[Time], YEAR(T2.[EffDate]) FROM TABLA1 AS T1
+	INNER JOIN TABLA2 AS T2
+	ON T1.EmpId = T2.EmpId
+
 
 	/*
 		Siempre buscar conectar con llaves y no con otros campos.
@@ -93,15 +102,34 @@ order by  year (OrderDate), month (orderdate)
 
 
 /*
+
+		AGGR Functions:
+
+		SUM
+		AVG
+		MIN
+		MAX
+
+		COUNT
+
+
 	HAVING> Usar unicamente para funciones de agregacion
+
+
+
 	WHERE> Filtrar por registros
 
 */
 
-select year (OrderDate) as "year", month (orderdate) as "month", IIF(count(*) < 1700, 'Menor','Mayor') as "Sales Orders" from sales.orders
-group by year (OrderDate), month (orderdate) 
+SELECT 
+	year(OrderDate) as "year", 
+	month(orderdate) as "month", 
+	IIF(count(*) < 1700, 'Menor','Mayor') as "Sales Orders"
+FROM Sales.Orders
+WHERE YEAR([OrderDate]) > '2015'
+GROUP BY year (OrderDate), month (orderdate) 
 HAVING COUNT(*) > 1700
-order by  year (OrderDate), month (orderdate)
+ORDER BY  year (OrderDate), month (orderdate)
 
 /*
 
@@ -115,7 +143,7 @@ order by  year (OrderDate), month (orderdate)
 		[x-z]: Rango
 		[x,z,y]: X, Z o Y
 
-
+		--https://www.w3schools.com/sql/sql_wildcards.asp
 */
 
 
